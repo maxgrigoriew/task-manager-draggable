@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 
 interface Props {
-  outline: string;
+  outline?: string;
 }
 
 const props = defineProps<Props>();
@@ -27,7 +27,7 @@ const className = computed(() => ({
   border-radius: $big;
   background-color: $accent;
   color: $light;
-  padding: 10px 24px;
+  padding: 10px 15px;
   font-weight: 600;
   font-size: 16px;
   display: flex;

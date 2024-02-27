@@ -1,17 +1,23 @@
+<script setup lang="ts">
+interface Props {
+  modelValue: string;
+  placeholder?: string;
+}
+
+const emit = defineEmits(['update:modelValue']);
+const props = defineProps<Props>();
+</script>
 <template>
   <input
     class="input"
     type="text"
     :value="props.modelValue"
+    :placeholder="placeholder"
     @input="
       $emit('update:modelValue', ($event.target as HTMLInputElement).value)
     "
   />
 </template>
-<script setup lang="ts">
-const emit = defineEmits(['update:modelValue']);
-const props = defineProps(['modelValue']);
-</script>
 <style lang="scss">
 @import '@/assets/scss/vars';
 

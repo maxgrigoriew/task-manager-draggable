@@ -26,8 +26,6 @@
 import AppButton from '@/components/AppButton.vue';
 </script>
 <style lang="scss" scoped>
-@import 'src/assets/scss/vars';
-
 .header {
   &__list {
     display: flex;
