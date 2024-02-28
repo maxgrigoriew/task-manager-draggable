@@ -15,6 +15,20 @@ $pre-big: 24px;
 $middle: 16px;
 $small: 12px;
 $transition: all 0.3s ease-in-out;
-$shadow:
-  0 0 2px rgba(0, 0, 0, 0.08),
-  0 2px 24px rgba(0, 0, 0, 0.06);
+$shadow: 0 0 2px rgba(0, 0, 0, 0.08), 0 2px 24px rgba(0, 0, 0, 0.06);
+
+:root {
+  --dm-sans: 'DM Sans', sans-serif;
+  --transition: 0.3s ease-in-out;
+  --orange: #ff5c00;
+  --orange-light: #ffe0ce;
+  --blue: #3300ff;
+  --blue-light: #d2f1ff;
+  --pink-light: #fdd4ff;
+  --green-light: #c7ffdf;
+  --gray: #828282;
+  --gray-light: #f4f4f4;
+  --accent: #9b38dc;
+  --accent-dark: #6a2499;
+  --border-radius: 10px;
+}

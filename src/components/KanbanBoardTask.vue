@@ -1,0 +1,106 @@
+<script lang="ts" setup>
+import { ITask } from 'types';
+
+const { task } = defineProps(['task']);
+const emit = defineEmits(['openTask']);
+
+const startDrag = (evt: DragEvent, task: ITask): void => {
+  console.log(123);
+  if (evt.dataTransfer) {
+    evt.dataTransfer.dropEffect = 'move';
+    evt.dataTransfer.effectAllowed = 'move';
+    evt.dataTransfer.setData('itemID', task.id.toString());
+  }
+};
+
+defineExpose({
+  startDrag,
+});
+</script>
+<template>
+  <div
+    class="task"
+    draggable
+    @dragstart="startDrag($event, task)"
+  >
+    <div
+      class="task__inner"
+      :style="{ background: task.color }"
+    >
+      <div class="task__top">
+        <p class="task__info">
+          <span class="task__info-title">Название: </span>{{ task.title }}
+        </p>
+        <p class="task__info">
+          <span class="task__info-title">Описание: </span>{{ task.description }}
+        </p>
+      </div>
+    </div>
+  </div>
+</template>
+<style lang="scss" scoped>
+.task {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+
+  &__inner {
+    padding: 15px;
+    border: 1px solid var(--gray-light);
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05),
+      0px 0px 0px rgba(40, 47, 61, 0.12);
+    transition: all var(--transition);
+    border-radius: var(--border-radius);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &__info {
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+    &-title {
+      font-size: 11px;
+    }
+  }
+
+  &__bottom {
+    padding-top: 10px;
+    &-date {
+      position: relative;
+      padding-left: 16px;
+      font-size: 14px;
+      margin-left: auto;
+      &::before {
+        content: '';
+        position: absolute;
+        left: 2px;
+        top: 3px;
+        width: 14px;
+        height: 14px;
+        // background-image: url('./../assets/images/calendar.svg');
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+  }
+
+  &:hover {
+    box-shadow: 0px 0px 16px rgba(28, 41, 61, 0.05),
+      0px 4px 8px rgba(28, 41, 61, 0.06);
+    cursor: pointer;
+  }
+}
+</style>

@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import AppButton from './AppButton.vue';
 
-const isOpenModal = ref<Boolean>(true);
+const isOpenModal = ref<Boolean>(false);
 
 const openModal = (): void => {
   isOpenModal.value = true;

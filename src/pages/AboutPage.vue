@@ -1,36 +1,42 @@
 <script lang="ts" setup>
-import { ref, reactive } from 'vue';
+import { ref, reactive, Ref } from 'vue';
 import AppButton from '../components/AppButton.vue';
 import AppModal from '../components/AppModal.vue';
 import AppInput from '../components/AppInput.vue';
+import KanbanBoard from '../components/KanbanBoard.vue';
+import COLUMNS from '../data/columns';
+import { ITask } from './../types/index';
 
-interface IFormModal {
-  title: string;
-  description: string;
-}
-
-const tasks = ref([{ id: 1, title: '1', description: '2' }]);
-const formModal = reactive({ title: '', description: '' });
+const tasks: Ref<ITask[]> = ref([
+  { id: 1, title: '1', description: '2', columnId: 'start' },
+  { id: 12, title: '2', description: '22', columnId: 'start' },
+]);
+const formModal = reactive({ title: '', description: '', columnId: '' });
 const modalRef = ref<InstanceType<typeof AppModal>>();
 
 const openModal = (): void => modalRef.value?.openModal();
 const closeModal = (): void => modalRef.value?.closeModal();
-const openTask = (id: number): void => {
-  const findTask: IFormModal = tasks.value.find((i) => i.id === id);
+const openTask = (task: ITask): void => {
+  const findTask = tasks.value.find((i) => i.id === task.id);
 
   if (findTask) {
-    console.log(findTask);
+    openModal();
     formModal.title = findTask.title;
     formModal.description = findTask.description;
-    openModal();
   }
 };
 const clearModal = (): void => {
   formModal.title = '';
   formModal.description = '';
+  formModal.columnId = '';
 };
-const addTodo = (): void => {
-  tasks.value = [...tasks.value, { ...formModal, id: Math.random() }];
+const addTask = (): void => {
+  const newTask = {
+    ...formModal,
+    id: Math.random(),
+    columnId: 'start',
+  };
+  tasks.value.push(newTask);
   clearModal();
   closeModal();
 };
@@ -38,19 +44,16 @@ const addTodo = (): void => {
 
 <template>
   <div>
-    {{ formModal }}
+    {{ formModal }} <br />
     {{ tasks }}
     <app-button @click="openModal">Добавить задачу</app-button>
 
-    <ul>
-      <li
-        v-for="task in tasks"
-        :key="task.id"
-        @click="openTask(task.id)"
-      >
-        {{ task }}
-      </li>
-    </ul>
+    <kanban-board
+      :tasks="tasks"
+      :columns="COLUMNS"
+      @openTask="openTask"
+    />
+
     <app-modal
       ref="modalRef"
       v-model="formModal"
@@ -64,7 +67,7 @@ const addTodo = (): void => {
         placeholder="Введите название"
         v-model="formModal.description"
       ></app-input>
-      <app-button @click="addTodo"> Добавить</app-button>
+      <app-button @click="addTask"> Добавить</app-button>
     </app-modal>
   </div>
 </template>
