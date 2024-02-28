@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { ref, reactive, Ref } from 'vue';
+import { Ref, reactive, ref } from 'vue';
 import AppButton from '../components/AppButton.vue';
-import AppModal from '../components/AppModal.vue';
 import AppInput from '../components/AppInput.vue';
+import AppModal from '../components/AppModal.vue';
 import KanbanBoard from '../components/KanbanBoard.vue';
 import COLUMNS from '../data/columns';
 import { ITask } from './../types/index';
@@ -17,12 +17,12 @@ const modalRef = ref<InstanceType<typeof AppModal>>();
 const openModal = (): void => modalRef.value?.openModal();
 const closeModal = (): void => modalRef.value?.closeModal();
 const openTask = (task: ITask): void => {
-  const findTask = tasks.value.find((i) => i.id === task.id);
+  const foundTask = tasks.value.find((i) => i.id === task.id);
 
-  if (findTask) {
+  if (foundTask) {
     openModal();
-    formModal.title = findTask.title;
-    formModal.description = findTask.description;
+    formModal.title = foundTask.title;
+    formModal.description = foundTask.description;
   }
 };
 const clearModal = (): void => {
@@ -40,6 +40,14 @@ const addTask = (): void => {
   clearModal();
   closeModal();
 };
+
+const updateTasksOnDrop = (itemId: string, columnTitle: string) => {
+  const foundTask = tasks.value.find((task) => task.id === Number(itemId));
+
+  if (foundTask) {
+    foundTask.columnId = columnTitle;
+  }
+};
 </script>
 
 <template>
@@ -52,6 +60,7 @@ const addTask = (): void => {
       :tasks="tasks"
       :columns="COLUMNS"
       @openTask="openTask"
+      @updateTasksOnDrop="updateTasksOnDrop"
     />
 
     <app-modal

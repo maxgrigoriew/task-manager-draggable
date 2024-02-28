@@ -4,24 +4,19 @@ import { ITask } from 'types';
 const { task } = defineProps(['task']);
 const emit = defineEmits(['openTask']);
 
-const startDrag = (evt: DragEvent, task: ITask): void => {
-  console.log(123);
+const startDrag = (evt: DragEvent, taskId: number): void => {
   if (evt.dataTransfer) {
     evt.dataTransfer.dropEffect = 'move';
     evt.dataTransfer.effectAllowed = 'move';
-    evt.dataTransfer.setData('itemID', task.id.toString());
+    evt.dataTransfer.setData('itemID', taskId.toString());
   }
 };
-
-defineExpose({
-  startDrag,
-});
 </script>
 <template>
   <div
     class="task"
-    draggable
-    @dragstart="startDrag($event, task)"
+    draggable="true"
+    @dragstart="startDrag($event, task.id)"
   >
     <div
       class="task__inner"

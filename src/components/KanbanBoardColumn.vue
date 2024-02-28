@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import KanbanBoardTaskList from './KanbanBoardTaskList.vue';
 
-const emit = defineEmits(['updateOnDropTasks', 'openTask']);
+const emit = defineEmits(['updateTasksOnDrop', 'openTask']);
 const { tasks, column } = defineProps(['tasks', 'column']);
 
 const openTask = (task) => {
@@ -16,18 +16,17 @@ const taskCounter = computed(() => {
   return filterTasks.value.length;
 });
 
-const onDrop = (evt: DragEvent, columnId: string) => {
-  console.log('drop');
+const updateTasksOnDrop = (evt: DragEvent, columnId: string) => {
   if (evt.dataTransfer) {
     const itemID = evt.dataTransfer.getData('itemID');
-    emit('updateOnDropTasks', itemID, columnId);
+    emit('updateTasksOnDrop', itemID, columnId);
   }
 };
 </script>
 <template>
   <div
     class="board__column"
-    @drop="onDrop($event, column.id)"
+    @drop="updateTasksOnDrop($event, column.id)"
     @dragover.prevent
     @dragenter.prevent
   >

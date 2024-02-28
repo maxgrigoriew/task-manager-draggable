@@ -3,10 +3,14 @@ import { ITask } from 'types';
 import KanbanBoardColumn from './KanbanBoardColumn.vue';
 
 const { tasks, columns } = defineProps(['tasks', 'columns']);
-const emit = defineEmits(['openTask']);
+const emit = defineEmits(['openTask', 'updateTasksOnDrop']);
 
 const openTask = (task: ITask): void => {
   emit('openTask', task);
+};
+
+const updateTasksOnDrop = (itemID: string, columnId: string): void => {
+  emit('updateTasksOnDrop', itemID, columnId);
 };
 </script>
 <template>
@@ -17,6 +21,7 @@ const openTask = (task: ITask): void => {
       :column="column"
       :tasks="tasks"
       @openTask="openTask"
+      @updateTasksOnDrop="updateTasksOnDrop"
     />
   </div>
 </template>
