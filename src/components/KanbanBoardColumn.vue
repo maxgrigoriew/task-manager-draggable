@@ -1,15 +1,17 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import KanbanBoardTaskList from './KanbanBoardTaskList.vue';
+import { ITask } from 'types';
 
 const emit = defineEmits(['updateTasksOnDrop', 'openTask']);
-const { tasks, column } = defineProps(['tasks', 'column']);
+const props = defineProps(['tasks', 'column']);
 
-const openTask = (task) => {
+const openTask = (task: ITask) => {
   emit('openTask', task);
 };
+
 const filterTasks = computed(() => {
-  return tasks.filter((task) => task.columnId === column.id);
+  return props.tasks.filter((task: ITask) => task.columnId === props.column.id);
 });
 
 const taskCounter = computed(() => {

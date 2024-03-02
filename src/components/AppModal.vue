@@ -1,26 +1,21 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import AppButton from './AppButton.vue';
 
-const isOpenModal = ref<Boolean>(false);
+interface Props {
+  isOpenModal: boolean;
+}
+const props = defineProps<Props>();
+const emit = defineEmits(['closeModal']);
 
-const openModal = (): void => {
-  isOpenModal.value = true;
-};
 const closeModal = (): void => {
-  isOpenModal.value = false;
+  emit('closeModal');
 };
-
-defineExpose({
-  openModal,
-  closeModal,
-});
 </script>
 <template>
   <Transition>
     <div
       class="modal"
-      v-if="isOpenModal"
+      v-if="props.isOpenModal"
       @click="closeModal"
     >
       <div

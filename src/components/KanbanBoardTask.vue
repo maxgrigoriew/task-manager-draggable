@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { ITask } from 'types';
-
 const { task } = defineProps(['task']);
 const emit = defineEmits(['openTask']);
 
