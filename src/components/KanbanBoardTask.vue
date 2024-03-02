@@ -40,16 +40,9 @@ const startDrag = (evt: DragEvent, taskId: number): void => {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border-radius: var(--border-radius);
-  overflow: hidden;
-
+  color: var(--accent);
   &__inner {
     padding: 15px;
-    border: 1px solid var(--gray-light);
-    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05),
-      0px 0px 0px rgba(40, 47, 61, 0.12);
-    transition: all var(--transition);
-    border-radius: var(--border-radius);
     min-height: 100px;
     display: flex;
     flex-direction: column;

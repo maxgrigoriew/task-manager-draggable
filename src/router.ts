@@ -10,9 +10,9 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import('./pages/AboutPage.vue'),
+    path: '/kanban',
+    name: 'kanban',
+    component: () => import('./pages/KanbanPage.vue'),
     meta: {
       layout: 'MainLayout',
     },

@@ -87,7 +87,11 @@ const updateTasksOnDrop = (itemId: string, columnTitle: string) => {
 
 <template>
   <div>
-    <app-button @click="openModal">Добавить задачу</app-button>
+    <app-button
+      @click="openModal"
+      outline="true"
+      >Добавить задачу</app-button
+    >
     <kanban-board
       :tasks="tasks"
       :columns="COLUMNS"
@@ -142,3 +146,4 @@ const updateTasksOnDrop = (itemId: string, columnTitle: string) => {
   gap: 20px;
 }
 </style>
+../types/index

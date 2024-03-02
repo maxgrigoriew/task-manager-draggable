@@ -47,14 +47,13 @@ const updateTasksOnDrop = (evt: DragEvent, columnId: string) => {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  background: #ffffff;
   box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05),
     0px 0px 0px rgba(40, 47, 61, 0.12);
   border-left: 1px solid var(--gray-light);
   user-select: none;
 
-  &:last-child {
-    border-right: 1px solid var(--gray-light);
+  &:first-child {
+    border-left: none;
   }
   &__header {
     display: flex;

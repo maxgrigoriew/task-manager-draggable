@@ -60,7 +60,6 @@ const closeModal = (): void => {
     position: relative;
     display: flex;
     flex-direction: column;
-    border-radius: 10px;
     overflow: hidden;
     &::before {
       content: '';
@@ -70,20 +69,20 @@ const closeModal = (): void => {
       top: 0;
       right: 0;
       bottom: 0;
-      background-color: $light;
+      background-color: var(--light);
       z-index: -1;
     }
   }
   &__close {
     padding: 12px;
-    transition: $transition;
+    transition: var(--transition);
     align-self: flex-end;
   }
   &__title {
-    font-size: 32px;
+    font-size: 26px;
     font-weight: 600;
-    margin-bottom: 8px;
-    color: $black;
+    margin-bottom: 20px;
+    color: var(--accent);
     line-height: 1.3;
   }
   &__content {

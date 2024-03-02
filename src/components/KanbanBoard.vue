@@ -29,5 +29,7 @@ const updateTasksOnDrop = (itemID: string, columnId: string): void => {
 .board {
   display: grid;
   grid-template-columns: repeat(3, minmax(300px, 1fr));
+  background: rgba(0, 0, 0, 0.6);
+  padding: 30px;
 }
 </style>

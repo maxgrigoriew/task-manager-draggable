@@ -19,11 +19,8 @@ const props = defineProps<Props>();
   />
 </template>
 <style lang="scss">
-@import '@/assets/scss/vars';
-
 .input {
-  border: 2px solid $accent;
-  border-radius: $pre-big;
+  border: 2px solid var(--accent);
   background: #fff;
   height: 50px;
   padding: 0 20px;
@@ -31,6 +28,3 @@ const props = defineProps<Props>();
   display: block;
 }
 </style>
-
-function defineEmits(arg0: string[]) { throw new Error('Function not
-implemented.') }

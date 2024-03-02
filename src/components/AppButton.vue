@@ -22,29 +22,29 @@ const className = computed(() => ({
 </template>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/vars';
 .btn {
-  border-radius: $big;
-  background-color: $accent;
-  color: $light;
-  padding: 10px 15px;
+  background-color: var(--accent);
+  color: var(--light);
+  padding: 10px 30px;
   font-weight: 600;
   font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: $transition;
+  transition: var(--transition);
+  border: 1px solid var(--light);
   &:hover {
-    background-color: $accent-dark;
+    background-color: var(--light);
+    color: var(--accent);
   }
 }
 .btn-outline {
-  color: $accent;
-  border: 2px solid $accent;
-  background-color: $light;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  background-color: var(--light);
   &:hover {
-    background-color: $accent;
-    color: $light;
+    background-color: var(--accent);
+    color: var(--light);
   }
 }
 </style>
