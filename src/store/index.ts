@@ -70,7 +70,7 @@ export const store = createStore<State>({
 
     UPDATE_ON_TASKS_DROP(state, { columnId, itemID }) {
       const findIndex = state.tasks.findIndex((task) => task.id == itemID);
-      if (findIndex) {
+      if (findIndex !== -1) {
         state.tasks[findIndex].columnId = columnId = columnId;
       }
     },
