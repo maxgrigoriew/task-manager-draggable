@@ -30,6 +30,6 @@ const openTask = (task: ITask) => {
   flex-direction: column;
   gap: 15px;
   padding: 0 20px 10px 20px;
-  min-height: 50vh;
+  min-height: 70vh;
 }
 </style>

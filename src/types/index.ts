@@ -3,6 +3,7 @@ export interface ITask {
   title: string;
   description: string;
   columnId: string;
+  background: string;
 }
 
 export interface IBoardColumn {

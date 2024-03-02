@@ -54,7 +54,8 @@ const closeModal = (): void => {
   align-items: center;
 
   &__inner {
-    max-width: 600px;
+    max-width: 500px;
+    width: 100%;
     padding: 24px 40px;
     position: relative;
     display: flex;

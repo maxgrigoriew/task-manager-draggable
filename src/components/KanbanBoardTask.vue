@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { task } = defineProps(['task']);
+const props = defineProps(['task']);
 const emit = defineEmits(['openTask']);
 
 const startDrag = (evt: DragEvent, taskId: number): void => {
@@ -14,18 +14,22 @@ const startDrag = (evt: DragEvent, taskId: number): void => {
   <div
     class="task"
     draggable="true"
-    @dragstart="startDrag($event, task.id)"
+    @dragstart="startDrag($event, props.task.id)"
   >
     <div
       class="task__inner"
-      :style="{ background: task.color }"
+      :style="{ background: props.task.background }"
     >
       <div class="task__top">
         <p class="task__info">
-          <span class="task__info-title">Название: </span>{{ task.title }}
+          <span class="task__info-title">Название: </span>
+          <span class="task__info-description">{{ props.task.title }}</span>
         </p>
         <p class="task__info">
-          <span class="task__info-title">Описание: </span>{{ task.description }}
+          <span class="task__info-title">Описание: </span>
+          <span class="task__info-description">{{
+            props.task.description
+          }}</span>
         </p>
       </div>
     </div>
@@ -46,7 +50,7 @@ const startDrag = (evt: DragEvent, taskId: number): void => {
       0px 0px 0px rgba(40, 47, 61, 0.12);
     transition: all var(--transition);
     border-radius: var(--border-radius);
-    min-height: 200px;
+    min-height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -62,31 +66,12 @@ const startDrag = (evt: DragEvent, taskId: number): void => {
     font-size: 14px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 6px;
+    gap: 10px;
     &-title {
-      font-size: 11px;
+      font-size: 12px;
     }
-  }
-
-  &__bottom {
-    padding-top: 10px;
-    &-date {
-      position: relative;
-      padding-left: 16px;
-      font-size: 14px;
-      margin-left: auto;
-      &::before {
-        content: '';
-        position: absolute;
-        left: 2px;
-        top: 3px;
-        width: 14px;
-        height: 14px;
-        // background-image: url('./../assets/images/calendar.svg');
-        background-repeat: no-repeat;
-        background-size: contain;
-      }
+    &-description {
+      word-break: break-word;
     }
   }
 
