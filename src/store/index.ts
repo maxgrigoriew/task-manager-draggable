@@ -12,9 +12,15 @@ const setInitialForm = (): ITask => ({
   background: '',
 });
 
-export const store = new createStore({
+interface State {
+  formModal: ITask;
+  tasks: ITask[];
+  isOpenModal: boolean;
+}
+
+export const store = createStore<State>({
   state: {
-    tasks: [{ id: 1, title: '123' }],
+    tasks: [],
     formModal: { ...setInitialForm() },
     isOpenModal: false,
   },
@@ -29,7 +35,7 @@ export const store = new createStore({
 
     GET_TASKS_FROM_LOCALSTORAGE(state) {
       if (localStorage.getItem('tasks')) {
-        state.tasks = JSON.parse(localStorage.getItem('tasks'));
+        state.tasks = JSON.parse(localStorage.getItem('tasks') as string);
       }
     },
 
