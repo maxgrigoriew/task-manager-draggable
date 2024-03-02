@@ -10,6 +10,7 @@ const openTask = (task: ITask): void => {
 };
 
 const updateTasksOnDrop = (itemID: string, columnId: string): void => {
+  console.log(itemID, columnId);
   emit('updateTasksOnDrop', itemID, columnId);
 };
 </script>
