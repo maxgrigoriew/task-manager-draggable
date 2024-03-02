@@ -16,6 +16,7 @@ onMounted(() => store.commit('GET_TASKS_FROM_LOCALSTORAGE'));
 <template>
   <div>
     <app-button
+      class="app-button"
       @click="store.commit('OPEN_MODAL')"
       outline="true"
       >Добавить задачу</app-button
@@ -75,6 +76,9 @@ onMounted(() => store.commit('GET_TASKS_FROM_LOCALSTORAGE'));
   width: 100%;
   justify-content: flex-end;
   gap: 20px;
+}
+.app-button {
+  margin-bottom: 20px;
 }
 </style>
 ../types/index
